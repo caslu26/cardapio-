@@ -1,11 +1,11 @@
 // Variáveis para armazenar os itens do menu e o pedido
 const menuItens = [
-    { nome: 'Pizza', preco: 20.00 },
-    { nome: 'Hambúrguer', preco: 15.00 },
-    { nome: 'Batata Frita', preco: 8.00 },
-    { nome: 'Refrigerante', preco: 5.00},
-    { nome: 'Suco', preco: 5.00 },
-    { nome: 'Água', preco: 3.00 }
+    { nome: 'Pizza', preco: 20.00, imagem: 'imagens/pizza.jpeg' },
+    { nome: 'Hambúrguer', preco: 15.00, imagem:'imagens/burguer.jpeg' },
+    { nome: 'Batata Frita', preco: 8.00, imagem: 'imagens/fritas.jpeg' },
+    { nome: 'Refrigerante', preco: 5.00, imagem: 'imagens/refri.jpeg' },
+    { nome: 'Suco', preco: 5.00, imagem: 'imagens/suco.jpeg' },
+    { nome: 'Água', preco: 3.00, imagem: 'imagens/agua.jpeg' }
     // Adicione mais itens de menu aqui
 ];
 const pedidoItens = [];
@@ -48,6 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const divItem = document.createElement('div');
         divItem.classList.add('item');
 
+        const imagemItem = document.createElement('img');
+        imagemItem.src = item.imagem;
+        imagemItem.alt = item.nome;
+
         const nomeItem = document.createElement('h2');
         nomeItem.textContent = item.nome;
 
@@ -60,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             adicionarAoPedido(item.nome);
         });
 
+        divItem.appendChild(imagemItem);
         divItem.appendChild(nomeItem);
         divItem.appendChild(precoItem);
         divItem.appendChild(botaoPedir);
@@ -71,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     enviarPedidoBtn.addEventListener('click', () => {
         const total = calcularTotal();
         const mensagem = `Gostaria de fazer um pedido no valor de R$ ${total}. Meu pedido é: ${pedidoItens.join(', ')}`;
-        const numeroWhatsApp = 'seu-numero-de-telefone'; // Substitua pelo seu número de WhatsApp
+        const numeroWhatsApp = '11948391523'; // Substitua pelo seu número de WhatsApp
         const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
         window.open(urlWhatsApp, '_blank');
     });
